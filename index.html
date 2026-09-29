@@ -1,1 +1,763 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Lesankar Monitoramento Inteligente: rastreamento de carros, motos, caminhões, barcos e jet skis, com bloqueio pelo app e telemetria. Planos a partir de R$ 29,90.">
+<style>html,body{margin:0}img{max-width:100%}</style>
+<title>Lesankar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
 
+:root {
+--bg: #04070F;
+--bg-2: #080E1C;
+--panel: #0B1324;
+--panel-2: #0F1A30;
+--line: #1B2742;
+--fg: #F2F5FA;
+--muted: #9AA6BD;
+--blue: #1F6BFF;
+--blue-2: #3D86FF;
+--blue-soft: rgba(31,107,255,.14);
+--green: #25D366;
+--red: #FF3B3B;
+--ph: #F2C45A;
+--display: "Sora", "Segoe UI", system-ui, sans-serif;
+--body: "Manrope", "Segoe UI", system-ui, sans-serif;
+color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: 20px; }
+h1, h2, h3 { font-family: var(--display); margin: 0; line-height: 1.08; text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px solid var(--blue-2); outline-offset: 3px; }
+.blue { color: var(--blue-2); }
+.ph { color: var(--ph); border-bottom: 1px dashed currentColor; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 8px; font: 700 .9rem var(--body); letter-spacing: .04em; text-transform: uppercase; text-decoration: none; border: 0; cursor: pointer; transition: background .2s, transform .2s; }
+.btn-blue { background: var(--blue); color: #fff; box-shadow: 0 8px 24px rgba(31,107,255,.35); }
+.btn-blue:hover { background: var(--blue-2); transform: translateY(-1px); }
+.btn-outline { border: 1.5px solid var(--blue); color: var(--fg); background: transparent; }
+.btn svg { flex: none; }
+
+header.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(4,7,15,.82); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(27,39,66,.6); }
+header.nav .wrap { display: flex; align-items: center; gap: 24px; padding-block: 16px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand-name { font-family: var(--display); font-weight: 700; font-size: 1.55rem; letter-spacing: .12em; line-height: 1; }
+.brand-sub { display: block; font-size: .62rem; letter-spacing: .2em; color: var(--blue-2); font-weight: 600; margin-top: 4px; text-transform: uppercase; }
+nav.links { margin-left: auto; }
+nav.links ul { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; }
+nav.links a { text-decoration: none; font-size: .82rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #D6DDEA; }
+nav.links a:hover, nav.links a.active { color: var(--blue-2); }
+nav.links a.active { text-decoration: underline; text-underline-offset: 6px; }
+.nav-cta { margin-left: 12px; }
+.menu-btn { display: none; margin-left: auto; order: 2; background: none; border: 1px solid var(--line); color: var(--fg); border-radius: 8px; padding: 8px 10px; cursor: pointer; }
+
+.hero { position: relative; overflow: hidden; background:
+radial-gradient(70% 60% at 72% 30%, rgba(31,107,255,.22), transparent 70%),
+radial-gradient(40% 40% at 90% 90%, rgba(31,107,255,.12), transparent 70%),
+linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%); }
+.skyline { position: absolute; inset: 0 0 auto 38%; height: 70%; opacity: .55; pointer-events: none; }
+.hero .hero-bottom { display: block; padding-block: 0 56px; }
+.hero > .wrap:not(.hero-bottom) { position: relative; display: grid; grid-template-columns: 1fr 1.05fr; gap: 32px; align-items: center; padding-block: 56px 40px; }
+.hero > .wrap > * { min-width: 0; }
+.hero-text { display: flex; flex-direction: column; gap: 24px; }
+.pill { align-self: flex-start; border: 1.5px solid var(--blue); color: var(--blue-2); border-radius: 999px; padding: 7px 16px; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; background: rgba(31,107,255,.06); }
+.hero h1 { font-size: clamp(2.8rem, 6.4vw, 5.2rem); font-weight: 700; letter-spacing: -.03em; }
+.lead { font-size: 1.15rem; color: #C7D0E0; max-width: 30em; }
+.feats { display: flex; flex-wrap: wrap; gap: 18px 30px; }
+.feat { display: flex; align-items: center; gap: 12px; font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; line-height: 1.35; }
+.ring { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid rgba(61,134,255,.55); display: grid; place-items: center; color: #DCE6FA; flex: none; background: rgba(31,107,255,.06); }
+.price-card { background: linear-gradient(180deg, rgba(15,26,48,.9), rgba(11,19,36,.9)); border: 1px solid var(--line); border-radius: 14px; padding: 24px; max-width: 480px; display: flex; flex-direction: column; gap: 10px; }
+.price-card small { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: #C7D0E0; font-weight: 600; }
+.price { font-family: var(--display); font-weight: 700; display: flex; align-items: baseline; gap: 6px; font-variant-numeric: tabular-nums; }
+.price .cur { font-size: 1.6rem; }
+.price .val { font-size: 3rem; letter-spacing: -.02em; line-height: 1; }
+.price .per { color: var(--blue-2); font-size: 1rem; font-weight: 600; }
+
+.visual { position: relative; min-height: 520px; }
+.car-scene { position: absolute; left: 0; right: 150px; bottom: 30px; }
+.car-scene svg { width: 100%; height: auto; display: block; }
+.pin-float { position: absolute; left: 44%; top: 8%; width: 64px; animation: bob 3s ease-in-out infinite; filter: drop-shadow(0 10px 20px rgba(31,107,255,.6)); }
+@keyframes bob { 50% { transform: translateY(-10px); } }
+.phone { position: absolute; right: 0; top: 0; width: 250px; aspect-ratio: 250 / 520; border-radius: 38px; background: #0A0F1A; border: 7px solid #22262E; box-shadow: 0 0 0 1px #3A3F48, 0 30px 80px rgba(0,0,0,.7), 0 0 60px rgba(31,107,255,.18); padding: 14px 12px; display: flex; flex-direction: column; gap: 10px; transform: rotate(2.5deg); max-width: 100%; }
+.phone .status { display: flex; justify-content: space-between; font-size: .66rem; font-weight: 700; padding-inline: 8px; }
+.phone .app-head { display: flex; align-items: center; gap: 8px; padding-inline: 4px; }
+.phone .app-head b { font-size: .9rem; display: block; }
+.phone .app-head span { font-size: .62rem; color: var(--green); }
+.phone .map { flex: 1; border-radius: 14px; overflow: hidden; background: #0C1424; border: 1px solid var(--line); }
+.phone .map svg { width: 100%; height: 100%; display: block; }
+.phone .car-card { background: var(--panel-2); border-radius: 14px; padding: 10px; display: flex; flex-direction: column; gap: 10px; }
+.phone .car-card .row { display: flex; justify-content: space-between; align-items: center; font-size: .8rem; font-weight: 700; }
+.phone .car-card .row small { display: block; color: var(--green); font-size: .62rem; font-weight: 600; }
+.phone .tools { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; text-align: center; font-size: .52rem; color: var(--muted); }
+.phone .tools div { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.phone .tools i { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; color: var(--fg); font-style: normal; }
+.phone .lock { background: var(--blue); color: #fff; border: 0; border-radius: 10px; font: 700 .66rem var(--body); letter-spacing: .06em; padding: 10px; display: flex; gap: 6px; justify-content: center; align-items: center; cursor: pointer; }
+.phone .lock.on { background: var(--red); }
+
+.strip { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; display: grid; grid-template-columns: repeat(4, 1fr); }
+.strip > div { display: flex; gap: 16px; align-items: center; padding: 22px 24px; min-width: 0; }
+.strip > div + div { border-left: 1px solid var(--line); }
+.strip h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+.strip p { color: var(--muted); font-size: .9rem; line-height: 1.4; }
+.strip svg { flex: none; color: var(--blue-2); }
+
+.combo { margin-top: 22px; display: grid; grid-template-columns: 1.35fr 1.5fr 1fr; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--panel); }
+.combo > * { min-width: 0; }
+.lockbox { display: grid; grid-template-columns: 150px 1fr; align-items: center; gap: 20px; padding-right: 24px; }
+.person { height: 100%; min-height: 190px; background:
+radial-gradient(60% 60% at 50% 35%, rgba(61,134,255,.25), transparent 70%),
+linear-gradient(135deg, #16243F, #0A1222); display: grid; place-items: center; color: var(--muted); font-size: .72rem; text-align: center; padding: 12px; }
+.lockbox h3 { font-size: 1.45rem; font-weight: 600; margin-bottom: 10px; }
+.lockbox p { color: var(--muted); font-size: .9rem; }
+.steps { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; padding: 26px 20px; border-left: 1px solid var(--line); }
+.step { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; font-size: .84rem; color: #C7D0E0; min-width: 0; }
+.step .ico { width: 64px; height: 64px; border-radius: 16px; border: 1px solid #2A3B63; display: grid; place-items: center; background: rgba(31,107,255,.05); color: var(--fg); }
+.step b { color: var(--blue-2); margin-right: 4px; }
+.arrow { color: var(--blue-2); margin-top: 22px; flex: none; }
+.wa-cta { background: linear-gradient(135deg, #1F6BFF, #1554D6); padding: 26px; display: flex; flex-direction: column; justify-content: center; gap: 16px; text-decoration: none; color: #fff; transition: filter .2s; }
+.wa-cta:hover { filter: brightness(1.08); }
+.wa-cta .top { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; line-height: 1.35; }
+.wa-cta p { font-size: 1.02rem; }
+
+section.block { padding-block: 72px; }
+.head { display: flex; flex-direction: column; gap: 12px; max-width: 42em; margin-bottom: 32px; }
+.head h2 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -.02em; }
+.head p { color: var(--muted); font-size: 1.05rem; }
+.kicker { color: var(--blue-2); font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.about { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; }
+.about > * { min-width: 0; }
+.about-text { display: flex; flex-direction: column; gap: 16px; color: #C7D0E0; font-size: 1.05rem; }
+.nums { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.num { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+.num strong { font-family: var(--display); font-size: 2rem; display: block; font-variant-numeric: tabular-nums; }
+.num span { color: var(--muted); font-size: .9rem; }
+.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.plan { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 18px; min-width: 0; position: relative; }
+.plan.featured { border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue), 0 20px 60px rgba(31,107,255,.2); background: linear-gradient(180deg, #0F1D3A, var(--panel)); }
+.plan .tag { position: absolute; top: -12px; left: 28px; background: var(--blue); color: #fff; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; }
+.plan h3 { font-size: 1.25rem; font-weight: 600; }
+.plan .price .val { font-size: 2.4rem; }
+.plan ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; color: #C7D0E0; font-size: .95rem; }
+.plan li { display: flex; gap: 10px; align-items: flex-start; }
+.plan li svg { flex: none; margin-top: 3px; color: var(--blue-2); }
+.plan li.off { color: #5C6883; }
+.plan li.off svg { color: #3A4660; }
+.plan .btn { margin-top: auto; justify-content: center; }
+.note { margin-top: 18px; color: var(--muted); font-size: .85rem; }
+.benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.benefit { border: 1px solid var(--line); border-radius: 14px; padding: 26px; background: linear-gradient(180deg, rgba(15,26,48,.6), transparent); display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.benefit .ring { width: 48px; height: 48px; }
+.benefit h3 { font-size: 1.1rem; font-weight: 600; }
+.benefit p { color: var(--muted); font-size: .95rem; }
+.how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: s; }
+.how-step { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.how-step .n { font-family: var(--display); font-size: 2.6rem; font-weight: 800; color: var(--blue); line-height: 1; }
+.how-step h3 { font-size: 1.15rem; font-weight: 600; }
+.how-step p { color: var(--muted); }
+.contact { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; }
+.contact > * { min-width: 0; }
+.channels { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.channels li { display: flex; gap: 14px; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+.channels a { color: var(--fg); text-decoration: none; font-weight: 600; }
+.channels a:hover { color: var(--blue-2); }
+.channels small { display: block; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+form { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+form .full { grid-column: 1 / -1; }
+label { display: flex; flex-direction: column; gap: 6px; font-size: .85rem; font-weight: 600; color: #C7D0E0; }
+input, textarea, select { font: inherit; font-weight: 500; color: var(--fg); background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 12px; width: 100%; }
+textarea { min-height: 100px; resize: vertical; }
+.form-note { color: var(--green); font-size: .9rem; }
+footer { border-top: 1px solid var(--line); background: var(--bg); }
+footer .wrap { padding-block: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; color: var(--muted); font-size: .88rem; }
+.wa-float { position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); width: 58px; height: 58px; border-radius: 50%; background: var(--green); display: grid; place-items: center; box-shadow: 0 10px 30px rgba(37,211,102,.4); z-index: 30; }
+
+.cart-btn { position: relative; background: none; border: 1px solid var(--line); color: var(--fg); border-radius: 8px; padding: 8px 10px; cursor: pointer; display: grid; place-items: center; }
+.cart-count { position: absolute; top: -7px; right: -7px; background: var(--blue); color: #fff; font-size: .7rem; font-weight: 700; min-width: 20px; height: 20px; border-radius: 999px; display: grid; place-items: center; padding: 0 5px; }
+.shop-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.chip { background: var(--panel); border: 1px solid var(--line); color: #C7D0E0; border-radius: 999px; padding: 8px 16px; font: 600 .85rem var(--body); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); color: #fff; }
+.products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.product { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.product .pic { aspect-ratio: 4 / 3; max-width: 100%; display: grid; place-items: center; background: radial-gradient(60% 60% at 50% 45%, rgba(31,107,255,.28), transparent 70%), var(--panel-2); color: var(--blue-2); position: relative; }
+.product .badge { position: absolute; top: 12px; left: 12px; background: var(--blue); color: #fff; font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+.product .info { padding: 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.product .cat { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.product h3 { font-size: 1.02rem; font-weight: 600; line-height: 1.25; }
+.product p { color: var(--muted); font-size: .88rem; }
+.product .buy { margin-top: auto; padding-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.product .pp { font-family: var(--display); font-weight: 700; font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+.product .pp small { display: block; font-family: var(--body); font-weight: 500; font-size: .72rem; color: var(--muted); }
+.add { background: var(--blue); color: #fff; border: 0; border-radius: 8px; padding: 10px 12px; font: 700 .78rem var(--body); letter-spacing: .04em; text-transform: uppercase; cursor: pointer; white-space: nowrap; }
+.add:hover { background: var(--blue-2); }
+.add.done { background: var(--green); }
+.drawer-bg { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 40; }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(420px, 100%); background: var(--bg-2); border-left: 1px solid var(--line); z-index: 41; display: flex; flex-direction: column; padding: calc(20px + env(safe-area-inset-top, 0px)) 20px calc(20px + env(safe-area-inset-bottom, 0px)); gap: 16px; }
+.drawer-head { display: flex; justify-content: space-between; align-items: center; }
+.drawer-head h2 { font-size: 1.3rem; }
+.icon-btn { background: none; border: 1px solid var(--line); color: var(--fg); border-radius: 8px; width: 36px; height: 36px; cursor: pointer; font-size: 1.1rem; }
+.cart-items { list-style: none; margin: 0; padding: 0; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 12px; }
+.cart-items li { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; }
+.cart-items li b { font-size: .92rem; }
+.cart-items li span { color: var(--muted); font-size: .85rem; font-variant-numeric: tabular-nums; }
+.qty { display: flex; align-items: center; gap: 6px; }
+.qty button { width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg-2); color: var(--fg); cursor: pointer; font-weight: 700; }
+.qty output { min-width: 20px; text-align: center; font-variant-numeric: tabular-nums; }
+.cart-empty { color: var(--muted); text-align: center; padding: 40px 0; }
+.cart-foot { border-top: 1px solid var(--line); padding-top: 16px; display: flex; flex-direction: column; gap: 12px; }
+.cart-total { display: flex; justify-content: space-between; font-family: var(--display); font-weight: 700; font-size: 1.2rem; font-variant-numeric: tabular-nums; }
+.cart-foot small { color: var(--muted); font-size: .8rem; }
+.btn-green { background: var(--green); color: #04110A; justify-content: center; }
+@media (max-width: 1080px) { .products { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) {
+header.nav .wrap { gap: 10px; }
+.brand svg { width: 34px; height: 38px; }
+.brand-name { font-size: 1.15rem; }
+.brand-sub { font-size: .52rem; letter-spacing: .14em; } .products { grid-template-columns: 1fr; } }
+
+.fleet { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+.vehicle { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 18px 14px 14px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.vpic svg { width: 100%; height: auto; display: block; }
+.vehicle figcaption { display: flex; flex-direction: column; }
+.vehicle figcaption b { font-family: var(--display); font-weight: 600; font-size: 1.05rem; }
+.vehicle figcaption span { color: var(--muted); font-size: .88rem; }
+.plan-pic { background: radial-gradient(60% 70% at 50% 55%, rgba(31,107,255,.22), transparent 70%), var(--panel-2); border-radius: 12px; padding: 14px 10px 6px; }
+.plan button.btn { margin-top: auto; justify-content: center; }
+.shop { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.tag-card { display: grid; grid-template-columns: 1fr; grid-template-rows: auto 1fr; background: var(--panel); border: 1px solid var(--blue); border-radius: 18px; overflow: hidden; box-shadow: 0 20px 60px rgba(31,107,255,.15); }
+.tag-card > * { min-width: 0; }
+.tag-visual { position: relative; display: grid; place-items: center; padding: 24px 28px; background: radial-gradient(60% 60% at 50% 50%, rgba(31,107,255,.25), transparent 70%), var(--panel-2); }
+.tag-svg { width: 100%; max-width: 260px; height: auto; position: relative; z-index: 1; filter: drop-shadow(0 20px 40px rgba(0,0,0,.5)); }
+.waves { position: absolute; inset: 0; background: repeating-radial-gradient(circle at 50% 50%, transparent 0 26px, rgba(61,134,255,.12) 26px 27px); }
+.tag-info { padding: 26px; display: flex; flex-direction: column; gap: 14px; }
+.tag-info .cat { color: var(--blue-2); font-size: .74rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.tag-info h3 { font-size: 1.6rem; font-weight: 700; }
+.tag-info p { color: #C7D0E0; }
+.tag-info .fine { color: var(--muted); font-size: .88rem; }
+.specs { list-style: none; margin: 4px 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.specs li { background: var(--bg-2); border: 1px solid var(--line); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; min-width: 0; }
+.specs small { color: var(--muted); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+.specs b { font-size: .95rem; }
+.tag-buy { margin-top: auto !important; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 6px; }
+.tag-buy .val { font-size: 2.4rem; }
+.tag-buy .per { font-size: .9rem; }
+@media (max-width: 1080px) { .fleet { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 920px) { .shop { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .fleet { grid-template-columns: 1fr 1fr; gap: 12px; } .vehicle { padding: 14px; } .specs { grid-template-columns: 1fr; } .tag-info { padding: 22px; } }
+.draft-note { background: #2A2210; color: var(--ph); font-size: .82rem; text-align: center; padding: 7px 16px; }
+@media (max-width: 1080px) {
+nav.links ul { gap: 18px; }
+.combo { grid-template-columns: 1fr 1fr; }
+.wa-cta { grid-column: 1 / -1; }
+}
+@media (max-width: 920px) {
+.menu-btn { display: block; }
+nav.links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--line); margin: 0; }
+nav.links.open { display: block; }
+nav.links ul { flex-direction: column; gap: 0; padding: 8px 20px 16px; }
+nav.links a { display: block; padding: 12px 0; }
+.nav-cta { display: none; }
+.cart-btn { margin-left: auto; }
+.menu-btn { margin-left: 8px; }
+.hero > .wrap:not(.hero-bottom) { grid-template-columns: 1fr; }
+.visual { min-height: 460px; }
+.strip { grid-template-columns: 1fr 1fr; }
+.strip > div:nth-child(3) { border-left: 0; }
+.strip > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+.about, .contact { grid-template-columns: 1fr; }
+.plans, .benefits, .how { grid-template-columns: 1fr; }
+.combo { grid-template-columns: 1fr; }
+.steps { border-left: 0; border-top: 1px solid var(--line); }
+}
+@media (max-width: 560px) {
+.visual { min-height: 400px; }
+.phone { width: 190px; border-radius: 30px; }
+.car-scene { right: 60px; bottom: 10px; }
+.strip { grid-template-columns: 1fr; }
+.strip > div { border-left: 0 !important; }
+.strip > div + div { border-top: 1px solid var(--line); }
+.lockbox { grid-template-columns: 1fr; padding: 0 20px 24px; }
+.person { min-height: 140px; }
+.steps { flex-direction: column; align-items: stretch; }
+.step { flex-direction: row; text-align: left; }
+.arrow { display: none; }
+form { grid-template-columns: 1fr; }
+section.block { padding-block: 64px; }
+}
+@media (prefers-reduced-motion: reduce) {
+html { scroll-behavior: auto; }
+.pin-float { animation: none; }
+.btn { transition: none; }
+}
+</style>
+</head>
+<body>
+<header class="nav">
+<div class="wrap">
+<a class="brand" href="#inicio" aria-label="Lesankar, início">
+<svg width="46" height="50" viewBox="0 0 46 50" aria-hidden="true">
+<defs><clipPath id="lh"><rect x="0" y="0" width="23" height="50"/></clipPath><clipPath id="rh"><rect x="23" y="0" width="23" height="50"/></clipPath></defs>
+<ellipse cx="23" cy="41" rx="19" ry="6.5" fill="none" stroke="#F2F5FA" stroke-width="3.2"/>
+<path clip-path="url(#lh)" d="M23 2c-9 0-15 6.6-15 15 0 10 15 25 15 25s15-15 15-25C38 8.6 32 2 23 2z" fill="#2F7BFF"/>
+<path clip-path="url(#rh)" d="M23 2c-9 0-15 6.6-15 15 0 10 15 25 15 25s15-15 15-25C38 8.6 32 2 23 2z" fill="#F2F5FA"/>
+<circle cx="23" cy="16" r="7.2" fill="#fff" stroke="#04070F" stroke-width="2"/>
+<circle cx="23" cy="16" r="4" fill="#04070F"/><circle cx="21.4" cy="14.4" r="1.2" fill="#fff"/>
+</svg>
+<span><span class="brand-name">LESANKAR</span><span class="brand-sub">Monitoramento inteligente</span></span>
+</a>
+<button class="menu-btn" id="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="links">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+</button>
+<nav class="links" id="links" aria-label="Principal">
+<ul>
+<li><a class="active" href="#inicio">Início</a></li>
+<li><a href="#sobre">Sobre nós</a></li>
+<li><a href="#planos">Planos</a></li>
+<li><a href="#loja">Loja</a></li>
+<li><a href="#contato">Contato</a></li>
+</ul>
+</nav>
+<button class="cart-btn" id="cart-open" type="button" aria-label="Abrir pedido">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 4h2l2.4 11h11L21 7H6.2"/><circle cx="9" cy="19.5" r="1.5"/><circle cx="17" cy="19.5" r="1.5"/></svg>
+<span class="cart-count" id="cart-count" hidden>0</span>
+</button>
+<a class="btn btn-blue nav-cta" href="https://wa.me/5511982631120" target="_blank" rel="noopener">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>
+Chame no WhatsApp
+</a>
+</div>
+</header>
+<main id="inicio">
+<section class="hero">
+<svg class="skyline" viewBox="0 0 800 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+<defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A2B52"/><stop offset="1" stop-color="#04070F" stop-opacity="0"/></linearGradient></defs>
+<g fill="url(#sk)">
+<rect x="20" y="180" width="60" height="220"/><rect x="95" y="120" width="45" height="280"/><rect x="150" y="60" width="55" height="340"/>
+<rect x="215" y="150" width="40" height="250"/><rect x="265" y="30" width="60" height="370"/><rect x="335" y="110" width="50" height="290"/>
+<rect x="395" y="170" width="45" height="230"/><rect x="450" y="80" width="65" height="320"/><rect x="525" y="140" width="40" height="260"/>
+<rect x="575" y="50" width="55" height="350"/><rect x="640" y="160" width="50" height="240"/><rect x="700" y="100" width="70" height="300"/>
+</g>
+<g fill="#6FA0FF" opacity=".55" id="windows"></g>
+</svg>
+<div class="wrap">
+<div class="hero-text">
+<span class="pill">Tecnologia que protege</span>
+<h1>Seu carro na sua <span class="blue">mão.</span></h1>
+<p class="lead">Rastreamento em tempo real, bloqueio pelo app, telemetria e muito mais segurança para você e seu veículo.</p>
+<div class="feats">
+<div class="feat"><span class="ring"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span>Rastreamento<br>em tempo real</div>
+<div class="feat"><span class="ring"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V14M9 20V10M14 20V12M19 20V6"/></svg></span>Telemetria<br>completa</div>
+<div class="feat"><span class="ring"><svg width="22" height="20" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>Bloqueio<br>pelo app</div>
+</div>
+<div class="price-card">
+<small>Planos a partir de</small>
+<div class="price"><span class="cur">R$</span><span class="val">29,90</span><span class="per">/mês</span></div>
+<a class="btn btn-blue" href="#planos" style="align-self:flex-start">Conheça nossos planos
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></a>
+</div>
+</div>
+<div class="visual" aria-hidden="true">
+<div class="car-scene">
+<svg viewBox="0 0 520 300">
+<defs>
+<radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#1F6BFF" stop-opacity=".55"/><stop offset="1" stop-color="#1F6BFF" stop-opacity="0"/></radialGradient>
+<linearGradient id="body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A3242"/><stop offset=".5" stop-color="#11151D"/><stop offset="1" stop-color="#07090D"/></linearGradient>
+<linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2B3F66"/><stop offset="1" stop-color="#0B1220"/></linearGradient>
+<linearGradient id="tail" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FF3B3B" stop-opacity="0"/><stop offset=".5" stop-color="#FF4D4D"/><stop offset="1" stop-color="#FF3B3B" stop-opacity="0"/></linearGradient>
+</defs>
+<ellipse cx="260" cy="262" rx="250" ry="34" fill="url(#glow)"/>
+<ellipse cx="260" cy="262" rx="210" ry="26" fill="none" stroke="#3D86FF" stroke-opacity=".7" stroke-width="1.5"/>
+<ellipse cx="260" cy="262" rx="160" ry="18" fill="none" stroke="#3D86FF" stroke-opacity=".45" stroke-width="1"/>
+<path d="M70 200c0-22 10-40 30-48l40-12c20-36 50-58 90-62h70c40 4 70 26 92 62l38 12c22 8 32 26 32 48v28c0 12-8 20-20 20H90c-12 0-20-8-20-20z" fill="url(#body)" stroke="#3A4254" stroke-width="1"/>
+<path d="M150 140c18-30 44-48 80-50h66c34 2 60 20 78 50z" fill="url(#glass)" stroke="#44506A"/>
+<path d="M84 170h352" stroke="url(#tail)" stroke-width="7" stroke-linecap="round"/>
+<path d="M88 170h70M362 170h70" stroke="#FF3B3B" stroke-width="5" stroke-linecap="round" opacity=".95"/>
+<rect x="222" y="190" width="76" height="22" rx="3" fill="#1A1F29" stroke="#3A4254"/>
+<path d="M110 232h300" stroke="#2A3242" stroke-width="2"/>
+<rect x="80" y="226" width="44" height="40" rx="10" fill="#050608"/>
+<rect x="396" y="226" width="44" height="40" rx="10" fill="#050608"/>
+</svg>
+</div>
+<svg class="pin-float" viewBox="0 0 48 64"><path d="M24 2C12 2 3 11 3 23c0 15 21 37 21 37s21-22 21-37C45 11 36 2 24 2z" fill="#1F6BFF"/><circle cx="24" cy="22" r="8" fill="#04070F"/><circle cx="24" cy="22" r="4" fill="#1F6BFF"/></svg>
+<div class="phone">
+<div class="status"><span>9:41</span><span>●●● ▰</span></div>
+<div class="app-head">
+<svg width="22" height="26" viewBox="0 0 46 50"><path d="M23 2c-9 0-15 6.6-15 15 0 10 15 25 15 25s15-15 15-25C38 8.6 32 2 23 2z" fill="#1F6BFF"/><circle cx="23" cy="17" r="5.5" fill="#0A0F1A"/></svg>
+<div><b>Meu veículo</b><span>● Em movimento</span></div>
+</div>
+<div class="map">
+<svg viewBox="0 0 200 180" preserveAspectRatio="xMidYMid slice">
+<rect width="200" height="180" fill="#0C1424"/>
+<g stroke="#1A2743" stroke-width="1.2" fill="none">
+<path d="M0 30L200 50M0 90L200 70M0 140L200 160M40 0L60 180M110 0L90 180M160 0L180 180M0 60L120 0M80 180L200 100"/>
+</g>
+<path d="M40 20 L85 40 L120 60 L135 95 L110 125 L128 150" fill="none" stroke="#2F7BFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M128 130c-7 0-12 5-12 12 0 8 12 20 12 20s12-12 12-20c0-7-5-12-12-12z" fill="#1F6BFF"/>
+<circle cx="128" cy="142" r="4" fill="#0C1424"/>
+</svg>
+</div>
+<div class="car-card">
+<div class="row"><div>Meu carro<small>Online · 95%</small></div><span>⌄</span></div>
+<div class="tools">
+<div><i>⌖</i>Localização</div><div><i>↺</i>Histórico</div><div><i>◎</i>Cercas</div><div><i>🔔︎</i>Alertas</div>
+</div>
+<button class="lock" id="lock-btn" type="button" tabindex="-1">
+<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+<span id="lock-label">BLOQUEAR VEÍCULO</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="wrap hero-bottom">
+<div class="strip">
+<div>
+<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+<div><h3>Mais Segurança</h3><p>Proteção completa para você e sua família.</p></div>
+</div>
+<div>
+<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V14M9 20V10M14 20V12M19 20V6M4 11l5-4 5 3 6-6M16 4h4v4"/></svg>
+<div><h3>Mais Controle</h3><p>Acompanhe seu veículo de onde estiver.</p></div>
+</div>
+<div>
+<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0M9 17l3 2 3-2"/></svg>
+<div><h3>Mais Tranquilidade</h3><p>Alertas e bloqueio na palma da mão.</p></div>
+</div>
+<div>
+<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="13" r="2"/><path d="M8.5 16.5a5 5 0 0 1 0-7M15.5 9.5a5 5 0 0 1 0 7M5.5 19.5a9 9 0 0 1 0-13M18.5 6.5a9 9 0 0 1 0 13"/></svg>
+<div><h3>Tecnologia Avançada</h3><p>Equipamentos modernos e de alta precisão.</p></div>
+</div>
+</div>
+<div class="combo">
+<div class="lockbox">
+<div class="person">Foto: cliente<br>usando o app</div>
+<div><h3>Bloqueio do veículo <span class="blue">na hora que quiser.</span></h3><p>Mais segurança para você ter o controle sempre que precisar.</p></div>
+</div>
+<div class="steps">
+<div class="step"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 16V12l2-5h10l2 5v4M4 16h16v3H4zM9 4h6"/><circle cx="7.5" cy="13.5" r=".8" fill="currentColor"/><circle cx="16.5" cy="13.5" r=".8" fill="currentColor"/></svg></span><span><b>1</b>Instalamos o dispositivo no seu veículo</span></div>
+<svg class="arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M14 7l5 5-5 5"/></svg>
+<div class="step"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="7" y="2.5" width="10" height="19" rx="2"/><circle cx="12" cy="11" r="2.5"/><path d="M11 18.5h2"/></svg></span><span><b>2</b>Você acompanha tudo pelo app em tempo real</span></div>
+<svg class="arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M14 7l5 5-5 5"/></svg>
+<div class="step"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span><b>3</b>Em caso de risco, bloqueie o veículo com um toque</span></div>
+</div>
+<a class="wa-cta" href="https://wa.me/5511982631120" target="_blank" rel="noopener">
+<span class="top"><svg width="44" height="44" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#25D366"/><path fill="#fff" d="M12 5.5a6.5 6.5 0 0 0-5.6 9.8L5.5 18.5l3.3-.9A6.5 6.5 0 1 0 12 5.5zm3 8.2c-.1.4-.8.8-1.2.8-.6.1-1-.1-2.1-.5a7.6 7.6 0 0 1-2.9-2.6 3.4 3.4 0 0 1-.7-1.8 1.9 1.9 0 0 1 .6-1.4.6.6 0 0 1 .5-.2h.3c.1 0 .3 0 .4.3l.5 1.2v.3l-.5.6c-.1.1-.2.2 0 .4a5 5 0 0 0 2.1 1.9c.2.1.3 0 .4-.1l.5-.7c.1-.2.3-.1.4-.1l1.1.5c.2.1.3.1.3.2a1.5 1.5 0 0 1-.1.9z"/></svg>
+Chame no WhatsApp<br>e agende sua instalação</span>
+<p>Nossa equipe está pronta para te atender!</p>
+</a>
+</div>
+</div>
+</section>
+<section class="block" id="sobre">
+<div class="wrap">
+<div class="head">
+<span class="kicker">Sobre nós</span>
+<h2>Na rua ou na água, <span class="blue">a Lesankar acompanha.</span></h2>
+<p>Somos especialistas em rastreamento e monitoramento de carros, motos, caminhões, utilitários, barcos e jet skis. Instalamos o equipamento de forma discreta e você controla tudo pelo app: localização, bloqueio e telemetria.</p>
+</div>
+<div class="fleet">
+<figure class="vehicle"><div class="vpic" data-v="carro"></div><figcaption><b>Carros</b><span>Passeio e SUVs</span></figcaption></figure>
+<figure class="vehicle"><div class="vpic" data-v="moto"></div><figcaption><b>Motos</b><span>Dia a dia e entregas</span></figcaption></figure>
+<figure class="vehicle"><div class="vpic" data-v="caminhao"></div><figcaption><b>Caminhões</b><span>Cargas e frotas</span></figcaption></figure>
+<figure class="vehicle"><div class="vpic" data-v="van"></div><figcaption><b>Utilitários</b><span>Vans e pick-ups</span></figcaption></figure>
+<figure class="vehicle"><div class="vpic" data-v="barco"></div><figcaption><b>Barcos</b><span>Lanchas e botes</span></figcaption></figure>
+<figure class="vehicle"><div class="vpic" data-v="jetski"></div><figcaption><b>Jet skis</b><span>Lazer na água</span></figcaption></figure>
+</div>
+</div>
+</section>
+<section class="block" id="planos" style="background:var(--bg-2)">
+<div class="wrap">
+<div class="head">
+<span class="kicker">Planos de monitoramento</span>
+<h2>Planos a partir de <span class="blue">R$ 29,90</span> por mês</h2>
+<p>Escolha o plano, adicione ao pedido e finalize pelo WhatsApp. O valor é por veículo.</p>
+</div>
+<div class="plans">
+<article class="plan">
+<h3>Rastreio</h3>
+<div class="price"><span class="cur" style="font-size:1.2rem">R$</span><span class="val">29,90</span><span class="per">/mês</span></div>
+<ul>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Localização em tempo real no app</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Histórico de rotas</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Alertas no celular</li>
+</ul>
+<button class="btn btn-outline" type="button" data-add="p29">Contratar</button>
+</article>
+<article class="plan">
+<div class="plan-pic vpic" data-v="carro-rastreador" aria-hidden="true"></div>
+<h3>Monitoramento + Bloqueio</h3>
+<div class="price"><span class="cur" style="font-size:1.2rem">R$</span><span class="val">39,90</span><span class="per">/mês</span></div>
+<ul>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Tudo do plano Rastreio</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Bloqueio do veículo feito por você, direto no app</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Cercas virtuais</li>
+</ul>
+<button class="btn btn-outline" type="button" data-add="p39">Contratar</button>
+</article>
+<article class="plan featured">
+<span class="tag">Mais completo</span>
+<h3>Lesankar Completo</h3>
+<div class="price"><span class="cur" style="font-size:1.2rem">R$</span><span class="val">49,90</span><span class="per">/mês</span></div>
+<ul>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Todos os recursos do app</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Bloqueio pelo app</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Telemetria: velocidade, ignição, km rodados e freadas bruscas</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Suporte 24 horas</li>
+</ul>
+<button class="btn btn-blue" type="button" data-add="p49">Contratar</button>
+</article>
+</div>
+<p class="note">Itens de cada plano montados a partir do que você passou. Confirme se o plano de R$ 29,90 é esse mesmo.</p>
+</div>
+</section>
+<section class="block" id="loja">
+<div class="wrap">
+<div class="head">
+<span class="kicker">Loja</span>
+<h2>Equipamentos <span class="blue">Lesankar</span></h2>
+<p>Escolha o equipamento e ative o monitoramento no app. O pedido é finalizado pelo WhatsApp.</p>
+</div>
+<div class="shop">
+<article class="tag-card">
+<div class="tag-visual" aria-hidden="true"><div class="waves"></div>
+<svg class="tag-svg" viewBox="0 0 320 300">
+<defs>
+<radialGradient id="tagface" cx="42%" cy="38%" r="70%"><stop offset="0" stop-color="#7C879C"/><stop offset=".6" stop-color="#4D576B"/><stop offset="1" stop-color="#2E3544"/></radialGradient>
+<radialGradient id="tagrim" cx="45%" cy="35%" r="75%"><stop offset="0" stop-color="#3A3F4A"/><stop offset="1" stop-color="#0D0F13"/></radialGradient>
+<filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .6  0 0 0 0 .65  0 0 0 0 .8  0 0 0 .35 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+</defs>
+<g fill="none" stroke="#3D86FF" stroke-linecap="round">
+<path d="M70 200a100 100 0 0 1 0-100" stroke-width="3" opacity=".6"/><path d="M44 220a134 134 0 0 1 0-140" stroke-width="2.5" opacity=".35"/>
+<path d="M250 100a100 100 0 0 1 0 100" stroke-width="3" opacity=".6"/><path d="M276 80a134 134 0 0 1 0 140" stroke-width="2.5" opacity=".35"/>
+</g>
+<g fill="#0F1A30" stroke="#3D86FF" stroke-width="1.6">
+<rect x="14" y="40" width="26" height="44" rx="5"/><rect x="282" y="206" width="26" height="44" rx="5"/><rect x="272" y="36" width="22" height="38" rx="4"/>
+</g>
+<circle cx="160" cy="150" r="84" fill="url(#tagrim)"/>
+<g stroke="#000" stroke-opacity=".55" stroke-width="2">
+<path d="M160 66v10M219 91l-7 7M244 150h-10M219 209l-7-7M160 234v-10M101 209l7-7M76 150h10M101 91l7 7"/>
+</g>
+<circle cx="160" cy="150" r="84" fill="none" stroke="#5A606C" stroke-opacity=".5"/>
+<circle cx="160" cy="150" r="64" fill="#0B0D11"/>
+<circle cx="160" cy="150" r="60" fill="url(#tagface)"/>
+<circle cx="160" cy="150" r="60" fill="#fff" filter="url(#grain)"/>
+<ellipse cx="140" cy="126" rx="30" ry="18" fill="#fff" opacity=".08"/>
+</svg>
+</div>
+<div class="tag-info">
+<span class="cat">Rastreio sem chip</span>
+<h3>Tag de Rastreio Lesankar</h3>
+<p>A tag não usa chip de operadora. Ela se comunica com os celulares que estão por perto e, por meio deles, envia a localização para o app. Redonda, pequena e discreta, cabe em moto, bicicleta, mala, mochila ou carga.</p>
+<ul class="specs">
+<li><small>Bateria</small><b>cerca de 2 anos</b></li>
+<li><small>Chip</small><b>não precisa</b></li>
+<li><small>Uso</small><b>R$ 9,90/mês</b></li>
+</ul>
+<p class="fine">A precisão depende de quantos celulares existem perto da tag. Em áreas movimentadas a localização é mais precisa. Em locais isolados pode demorar mais para atualizar.</p>
+<div class="tag-buy">
+<div class="price"><span class="cur" style="font-size:1.2rem">R$</span><span class="val">49,90</span><span class="per">aparelho + R$ 9,90/mês</span></div>
+<button class="btn btn-blue" type="button" data-add="tag">Adicionar ao pedido</button>
+</div>
+</div>
+</article>
+<article class="tag-card">
+<div class="tag-visual" aria-hidden="true"><div class="waves"></div>
+<svg class="tag-svg" viewBox="0 0 320 300">
+<defs>
+<linearGradient id="obdb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A2E36"/><stop offset="1" stop-color="#0C0E12"/></linearGradient>
+<linearGradient id="obdt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3A3F49"/><stop offset="1" stop-color="#15181D"/></linearGradient>
+</defs>
+<path d="M92 70h170l18 34v88l-18 30H92z" fill="url(#obdt)" stroke="#454B56"/>
+<text x="186" y="96" text-anchor="middle" font-family="Sora,system-ui,sans-serif" font-style="italic" font-size="17" font-weight="700" fill="#C9D1DE" opacity=".85">Lesankar</text>
+<path d="M40 110h170l-14 118H56z" fill="url(#obdb)" stroke="#454B56"/>
+<path d="M58 124h134l-11 90H70z" fill="#060709"/>
+<g fill="#C9CED8">
+<rect x="70" y="138" width="10" height="3" rx="1"/><rect x="85" y="138" width="10" height="3" rx="1"/><rect x="100" y="138" width="10" height="3" rx="1"/><rect x="115" y="138" width="10" height="3" rx="1"/><rect x="130" y="138" width="10" height="3" rx="1"/><rect x="145" y="138" width="10" height="3" rx="1"/><rect x="160" y="138" width="10" height="3" rx="1"/><rect x="175" y="138" width="8" height="3" rx="1"/>
+<rect x="74" y="190" width="10" height="3" rx="1"/><rect x="89" y="190" width="10" height="3" rx="1"/><rect x="104" y="190" width="10" height="3" rx="1"/><rect x="119" y="190" width="10" height="3" rx="1"/><rect x="134" y="190" width="10" height="3" rx="1"/><rect x="149" y="190" width="10" height="3" rx="1"/><rect x="164" y="190" width="10" height="3" rx="1"/>
+</g>
+<path d="M78 166h40M132 166h40" stroke="#2A2F38" stroke-width="5"/>
+<path d="M236 176l40-6v38l-40 8z" fill="#E0262E"/>
+<text x="256" y="203" text-anchor="middle" font-family="Sora,system-ui,sans-serif" font-size="20" font-weight="800" fill="#fff" transform="rotate(-8 256 196)">4G</text>
+</svg>
+</div>
+<div class="tag-info">
+<span class="cat">Plug and play</span>
+<h3>Rastreador OBD2 4G Lesankar</h3>
+<p>É só encaixar na porta OBD2 do veículo, que fica embaixo do painel. Não precisa de instalação nem de cortar fios, e em poucos minutos o carro já aparece no app com localização em tempo real.</p>
+<ul class="specs">
+<li><small>Instalação</small><b>encaixe na hora</b></li>
+<li><small>Rede</small><b>4G</b></li>
+<li><small>Plano</small><b>Rastreio</b></li>
+</ul>
+<p class="fine">Funciona com o plano Rastreio. Para ter bloqueio pelo app, escolha um plano com equipamento instalado.</p>
+<div class="tag-buy">
+<div class="price"><span class="cur" style="font-size:1.2rem">R$</span><span class="val">149,90</span><span class="per">aparelho + R$ 29,90/mês</span></div>
+<button class="btn btn-blue" type="button" data-add="obd">Adicionar ao pedido</button>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="block" id="contato">
+<div class="wrap contact">
+<div>
+<div class="head" style="margin-bottom:28px">
+<span class="kicker">Contato</span>
+<h2>Fale com a <span class="blue">Lesankar</span></h2>
+<p>Tire dúvidas, peça um orçamento ou agende sua instalação.</p>
+</div>
+<ul class="channels">
+<li><span class="ring"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z" opacity=".9"/></svg></span><div><small>WhatsApp</small><a href="https://wa.me/5511982631120" target="_blank" rel="noopener">(11) 98263-1120</a></div></li>
+<li><span class="ring"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor"/></svg></span><div><small>Instagram</small><a href="https://instagram.com/lesankarmonitoramento" target="_blank" rel="noopener">@lesankarmonitoramento</a></div></li>
+<li><span class="ring"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></span><div><small>Site</small><span>www.lesankar.com.br</span></div></li>
+</ul>
+</div>
+<form id="contact-form">
+<label for="f-nome">Nome<input id="f-nome" required autocomplete="name"></label>
+<label for="f-tel">Telefone<input id="f-tel" type="tel" required autocomplete="tel"></label>
+<label for="f-veiculo">Veículo<input id="f-veiculo" placeholder="Ex.: Onix 2022"></label>
+<label for="f-plano">Plano de interesse
+<select id="f-plano"><option>Rastreio (R$ 29,90)</option><option>Monitoramento + Bloqueio (R$ 39,90)</option><option selected>Lesankar Completo (R$ 49,90)</option><option>Tag de Rastreio</option><option>Rastreador OBD2 4G</option><option>Ainda não sei</option></select>
+</label>
+<label class="full" for="f-msg">Mensagem<textarea id="f-msg"></textarea></label>
+<div class="full"><button class="btn btn-blue" type="submit">Enviar pelo WhatsApp</button></div>
+<p class="form-note full" id="form-note" hidden>Abrimos o WhatsApp com a sua mensagem. Se não abriu, <a id="form-link" href="https://wa.me/5511982631120" target="_blank" rel="noopener">toque aqui</a>.</p>
+</form>
+</div>
+</section>
+</main>
+<footer>
+<div class="wrap">
+<span>© 2026 Lesankar · Monitoramento inteligente</span>
+<span>Tecnologia que protege o que realmente importa. · <a href="https://instagram.com/lesankarmonitoramento" target="_blank" rel="noopener">@lesankarmonitoramento</a></span>
+</div>
+</footer>
+<div class="drawer-bg" id="drawer-bg" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-label="Carrinho">
+<div class="drawer-head"><h2>Seu pedido</h2><button class="icon-btn" id="cart-close" type="button" aria-label="Fechar carrinho">✕</button></div>
+<ul class="cart-items" id="cart-items"></ul>
+<div class="cart-foot">
+<div class="cart-total"><span>Pagamento inicial</span><span id="cart-now">R$ 0,00</span></div>
+<div class="cart-total"><span>Mensalidade</span><span id="cart-month">R$ 0,00/mês</span></div>
+<small>A instalação dos planos é agendada junto com o pedido.</small>
+<a class="btn btn-green" id="checkout" href="#" target="_blank" rel="noopener">Finalizar pelo WhatsApp</a>
+</div>
+</aside>
+<a class="wa-float" href="https://wa.me/5511982631120" target="_blank" rel="noopener" aria-label="Chame no WhatsApp">
+<svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>
+</a>
+<script>
+// janelas acesas no skyline
+(function () {
+var g = document.getElementById('windows');
+var blds = [[20,180,60],[95,120,45],[150,60,55],[215,150,40],[265,30,60],[335,110,50],[395,170,45],[450,80,65],[525,140,40],[575,50,55],[640,160,50],[700,100,70]];
+var seed = 7; function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+var out = '';
+blds.forEach(function (b) {
+for (var y = b[1] + 10; y < 330; y += 14) for (var x = b[0] + 6; x < b[0] + b[2] - 6; x += 10)
+if (rnd() > .78) out += '<rect x="' + x + '" y="' + y + '" width="4" height="6"/>';
+});
+g.innerHTML = out;
+})();
+// menu mobile
+var mb = document.getElementById('menu-btn'), links = document.getElementById('links');
+mb.addEventListener('click', function () { var o = links.classList.toggle('open'); mb.setAttribute('aria-expanded', o); });
+links.addEventListener('click', function (e) { if (e.target.tagName === 'A') { links.classList.remove('open'); mb.setAttribute('aria-expanded', false); } });
+// botão de bloqueio no app (demonstração)
+var lb = document.getElementById('lock-btn');
+lb.addEventListener('click', function () { var on = lb.classList.toggle('on'); document.getElementById('lock-label').textContent = on ? 'VEÍCULO BLOQUEADO' : 'BLOQUEAR VEÍCULO'; });
+// veículos com a marca Lesankar
+var PIN = function (x, y) { return '<g transform="translate(' + (x - 9) + ' ' + (y - 26) + ')"><path d="M9 0C4 0 0 3.8 0 8.8 0 14.6 9 25 9 25s9-10.4 9-16.2C18 3.8 14 0 9 0z" fill="#1F6BFF"/><circle cx="9" cy="8.6" r="3.4" fill="#04070F"/></g>' +
+'<g fill="none" stroke="#3D86FF" stroke-linecap="round" opacity=".7"><path d="M' + (x - 16) + ' ' + (y - 22) + 'a18 18 0 0 1 0-12M' + (x + 16) + ' ' + (y - 22) + 'a18 18 0 0 0 0-12"/></g>'; };
+var ROOF = function (x, y) { return '<rect x="' + (x - 26) + '" y="' + (y - 7) + '" width="52" height="9" rx="3" fill="#1F6BFF"/><text x="' + x + '" y="' + (y) + '" text-anchor="middle" font-family="Sora,system-ui,sans-serif" font-size="6.4" font-weight="700" letter-spacing="1" fill="#fff">LESANKAR</text>'; };
+var WHEEL = function (x, y, r) { return '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="#050608" stroke="#3A4254" stroke-width="2"/><circle cx="' + x + '" cy="' + y + '" r="' + (r * .4) + '" fill="#1A2233"/>'; };
+var BODY = 'fill="#0F1A30" stroke="#3D86FF" stroke-width="1.6" stroke-linejoin="round"';
+var GLASS = 'fill="#16284A" stroke="#2B4A80" stroke-width="1"';
+var VEHICLES = {
+carro: '<path ' + BODY + ' d="M18 80V66q2-9 14-11l30-4 22-17q6-4 16-4h36q10 0 16 6l14 16 14 4q8 2 8 10v14z"/><path ' + GLASS + ' d="M90 37l-12 14h40V37zM124 37v14h34l-10-12q-3-2-8-2z"/>' + WHEEL(52, 82, 13) + WHEEL(156, 82, 13) + ROOF(118, 29) + PIN(118, 14),
+moto: '<path fill="none" stroke="#3D86FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M45 82l44-12M155 82l-18-46M130 34h16"/><path ' + BODY + ' d="M60 52q0-6 6-6h34l-6 10H64q-4 0-4-4z"/><path ' + BODY + ' d="M96 46h30l12 14-22 10H88z"/><rect x="84" y="62" width="30" height="18" rx="3" ' + BODY + '/><path fill="none" stroke="#3A4254" stroke-width="4" stroke-linecap="round" d="M84 80H50"/>' + WHEEL(45, 82, 18) + WHEEL(155, 82, 18) + ROOF(80, 44) + PIN(80, 30),
+caminhao: '<path ' + BODY + ' d="M16 84V46q0-8 8-8h28l14 18v28z"/><path ' + GLASS + ' d="M26 44h22l10 12H26z"/><rect x="70" y="24" width="116" height="60" rx="3" ' + BODY + '/><text x="128" y="60" text-anchor="middle" font-family="Sora,system-ui,sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#F2F5FA">LESANKAR</text>' + WHEEL(40, 88, 12) + WHEEL(134, 88, 12) + WHEEL(162, 88, 12) + ROOF(128, 23) + PIN(128, 8),
+barco: '<path ' + BODY + ' d="M16 68h170l-18 24H40z"/><path ' + BODY + ' d="M66 68V48q0-4 4-4h52l20 24"/><path ' + GLASS + ' d="M74 50h18v12H74zM98 50h20v12H98zM124 50l12 12h-12z"/><path d="M96 44V30" stroke="#9AA6BD" stroke-width="2"/>' + '<path fill="none" stroke="#3D86FF" stroke-width="2" stroke-linecap="round" opacity=".55" d="M8 97q11-6 22 0t22 0 22 0 22 0 22 0 22 0 22 0 22 0"/>' + ROOF(96, 43) + PIN(96, 22),
+jetski: '<path ' + BODY + ' d="M26 80q0-10 10-10h86l30-12h26l-12 24q-6 10-18 10H40q-14 0-14-12z"/><path ' + BODY + ' d="M58 70q0-8 8-8h44l6 8"/><path fill="none" stroke="#3D86FF" stroke-width="3" stroke-linecap="round" d="M128 62l12-18h12"/>' + '<path fill="none" stroke="#3D86FF" stroke-width="2" stroke-linecap="round" opacity=".55" d="M8 97q11-6 22 0t22 0 22 0 22 0 22 0 22 0 22 0 22 0"/>' + ROOF(86, 61) + PIN(86, 46),
+van: '<path ' + BODY + ' d="M18 82V40q0-12 12-12h118q10 0 16 10l18 22q4 4 4 10v12z"/><path ' + GLASS + ' d="M30 36h30v18H30zM66 36h30v18H66zM102 36h40v18h-40zM148 36h8l14 18h-22z"/>' + WHEEL(52, 84, 13) + WHEEL(152, 84, 13) + ROOF(96, 27) + PIN(96, 12)
+};
+var TRACKER = '<g transform="translate(214 50)"><path d="M18 0v-14" stroke="#9AA6BD" stroke-width="2" stroke-linecap="round"/><circle cx="18" cy="-15" r="2.5" fill="#9AA6BD"/>' +
+'<rect x="0" y="0" width="36" height="26" rx="5" fill="#14171D" stroke="#3D86FF" stroke-width="1.6"/><circle cx="8" cy="8" r="2.2" fill="#25D366"/><circle cx="15" cy="8" r="2.2" fill="#1F6BFF"/>' +
+'<text x="18" y="21" text-anchor="middle" font-family="Sora,system-ui,sans-serif" font-size="7" font-weight="700" fill="#C9D1DE" letter-spacing=".5">GPS</text>' +
+'<path d="M6 26v10M12 26v10M18 26v10" stroke="#E0262E" stroke-width="1.6"/><path d="M24 26v10" stroke="#F2C45A" stroke-width="1.6"/><path d="M30 26v10" stroke="#9AA6BD" stroke-width="1.6"/></g>' +
+'<g fill="none" stroke="#3D86FF" stroke-linecap="round" opacity=".75"><path d="M200 44a26 26 0 0 1 0-26M264 44a26 26 0 0 0 0-26" stroke-width="2"/></g>';
+document.querySelectorAll('.vpic').forEach(function (el) {
+var v = el.dataset.v, wide = v === 'carro-rastreador';
+el.innerHTML = '<svg viewBox="0 -20 ' + (wide ? 270 : 200) + ' 125" role="img" aria-label="Veículo com a marca Lesankar"><ellipse cx="' + (wide ? 135 : 100) + '" cy="98" rx="' + (wide ? 128 : 92) + '" ry="7" fill="#1F6BFF" opacity=".18"/>' + (wide ? VEHICLES.carro + TRACKER : VEHICLES[v]) + '</svg>';
+});
+// pedido (carrinho)
+var WA = '5511982631120';
+var ITEMS = {
+p29: { name: 'Plano Rastreio', monthly: 29.90, unit: 'veículo' },
+p39: { name: 'Plano Monitoramento + Bloqueio', monthly: 39.90, unit: 'veículo' },
+p49: { name: 'Plano Lesankar Completo', monthly: 49.90, unit: 'veículo' },
+tag: { name: 'Tag de Rastreio Lesankar', price: 49.90, monthly: 9.90, unit: 'tag' },
+obd: { name: 'Rastreador OBD2 4G', price: 149.90, monthly: 29.90, unit: 'aparelho' }
+};
+var brl = function (v) { return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); };
+var cart = {};
+try { cart = JSON.parse(localStorage.getItem('lesankar-cart-v2') || '{}') || {}; } catch (e) { cart = {}; }
+Object.keys(cart).forEach(function (k) { if (!ITEMS[k]) delete cart[k]; });
+function save() { try { localStorage.setItem('lesankar-cart-v2', JSON.stringify(cart)); } catch (e) {} }
+document.addEventListener('click', function (e) {
+var b = e.target.closest('[data-add]'); if (!b) return;
+cart[b.dataset.add] = (cart[b.dataset.add] || 0) + 1; save(); renderCart(); openCart(true);
+});
+function renderCart() {
+var ids = Object.keys(cart).filter(function (id) { return cart[id] > 0; });
+var count = 0, now = 0, month = 0, lines = [];
+document.getElementById('cart-items').innerHTML = ids.length ? ids.map(function (id) {
+var it = ITEMS[id], q = cart[id];
+count += q; now += (it.price || 0) * q; month += it.monthly * q;
+lines.push(q + 'x ' + it.name + (it.quote ? ' (valor a consultar)' : it.price ? ' (' + brl(it.price) + (it.monthly ? ' + ' + brl(it.monthly) + '/mês' : '') + ' cada)' : ' (' + brl(it.monthly) + '/mês por ' + it.unit + ')'));
+var sub = it.quote ? 'Valor a consultar' : it.price ? brl(it.price) + (it.monthly ? ' + ' + brl(it.monthly) + '/mês' : ' cada') : brl(it.monthly) + '/mês por ' + it.unit;
+return '<li><div><b>' + it.name + '</b><br><span>' + sub + '</span></div>' +
+'<div class="qty"><button type="button" data-id="' + id + '" data-d="-1" aria-label="Diminuir">−</button><output>' + q + '</output><button type="button" data-id="' + id + '" data-d="1" aria-label="Aumentar">+</button></div></li>';
+}).join('') : '<li class="cart-empty" style="display:block;background:none;border:0">Seu pedido está vazio. Escolha um plano ou um equipamento.</li>';
+var cc = document.getElementById('cart-count'); cc.textContent = count; cc.hidden = count === 0;
+document.getElementById('cart-now').textContent = brl(now);
+document.getElementById('cart-month').textContent = brl(month) + '/mês';
+var msg = 'Olá, Lesankar! Quero contratar:\n' + lines.join('\n') + '\nPagamento inicial: ' + brl(now) + '\nMensalidade: ' + brl(month) + '/mês';
+var co = document.getElementById('checkout');
+co.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+co.style.pointerEvents = count ? '' : 'none'; co.style.opacity = count ? '' : '.5';
+}
+document.getElementById('cart-items').addEventListener('click', function (e) {
+var b = e.target.closest('button[data-d]'); if (!b) return;
+cart[b.dataset.id] = Math.max(0, (cart[b.dataset.id] || 0) + Number(b.dataset.d));
+if (!cart[b.dataset.id]) delete cart[b.dataset.id];
+save(); renderCart();
+});
+var drawer = document.getElementById('drawer'), dbg = document.getElementById('drawer-bg');
+function openCart(o) { drawer.hidden = !o; dbg.hidden = !o; }
+document.getElementById('cart-open').addEventListener('click', function () { openCart(true); });
+document.getElementById('cart-close').addEventListener('click', function () { openCart(false); });
+dbg.addEventListener('click', function () { openCart(false); });
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') openCart(false); });
+renderCart();
+// formulário
+document.getElementById('contact-form').addEventListener('submit', function (e) {
+e.preventDefault();
+var v = function (id) { return document.getElementById(id).value.trim(); };
+var msg = 'Olá, Lesankar! Meu nome é ' + v('f-nome') + '.\nTelefone: ' + v('f-tel') + (v('f-veiculo') ? '\nVeículo: ' + v('f-veiculo') : '') + '\nInteresse: ' + v('f-plano') + (v('f-msg') ? '\n' + v('f-msg') : '');
+var url = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+document.getElementById('form-link').href = url;
+document.getElementById('form-note').hidden = false;
+try { window.open(url, '_blank', 'noopener'); } catch (err) {}
+});
+</script>
+</body>
+  </html>
