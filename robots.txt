@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.lesankar.com.br/sitemap.xml
