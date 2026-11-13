@@ -246,6 +246,16 @@ header.nav .wrap { gap: 10px; }
 .plan-pic { background: radial-gradient(60% 70% at 50% 55%, rgba(31,107,255,.22), transparent 70%), var(--panel-2); border-radius: 12px; padding: 14px 10px 6px; }
 .plan button.btn { margin-top: auto; justify-content: center; }
 .shop { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.promo-ml { max-width: 1240px; margin: 0 auto; padding: 18px 20px 0; }
+.promo-ml a { display: block; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(31,107,255,.25); transition: transform .2s; }
+.promo-ml a:hover { transform: translateY(-2px); }
+.promo-ml img { display: block; width: 100%; height: auto; }
+.tag-card.ml-card { grid-column: 1 / -1; grid-template-columns: minmax(0,2fr) minmax(0,3fr); grid-template-rows: auto; }
+.ml-card .tag-visual { padding: 0; }
+.ml-card .tag-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.btn-ml { background: #FFE600; color: #2D3277; font-weight: 700; }
+.btn-ml:hover { filter: brightness(.95); }
+@media (max-width: 760px) { .tag-card.ml-card { grid-template-columns: 1fr; } }
 .tag-card { display: grid; grid-template-columns: 1fr; grid-template-rows: auto 1fr; background: var(--panel); border: 1px solid var(--blue); border-radius: 18px; overflow: hidden; box-shadow: 0 20px 60px rgba(31,107,255,.15); }
 .tag-card > * { min-width: 0; }
 .tag-visual { position: relative; display: grid; place-items: center; padding: 24px 28px; background: radial-gradient(60% 60% at 50% 50%, rgba(31,107,255,.25), transparent 70%), var(--panel-2); }
@@ -351,6 +361,14 @@ Chame no WhatsApp
 </div>
 </header>
 <main id="inicio">
+<section class="promo-ml" aria-label="Promoção de fim de ano">
+<a href="https://produto.mercadolivre.com.br/MLB-5420145397-rastreador-veicular-com-bloqueio-pelo-app-carro-moto-gps-_JM" target="_blank" rel="noopener">
+<picture>
+<source media="(max-width: 700px)" srcset="midia/produtos/promo-fim-de-ano-quadrado.jpg" width="800" height="800">
+<img src="midia/produtos/promo-fim-de-ano-banner.jpg" width="1600" height="640" alt="Promoção de fim de ano por tempo limitado, até 31/12: Rastreador 4G com Bloqueio pelo App de R$ 119,90 por R$ 89,90, instalação grátis em SP capital, frete grátis e chip incluso. Comprar no Mercado Livre.">
+</picture>
+</a>
+</section>
 <section class="hero">
 <svg class="skyline" viewBox="0 0 800 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
 <defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A2B52"/><stop offset="1" stop-color="#04070F" stop-opacity="0"/></linearGradient></defs>
@@ -541,6 +559,24 @@ Chame no WhatsApp<br>e agende sua instalação</span>
 <p>Escolha o equipamento e ative o monitoramento no app. O pedido é finalizado pelo WhatsApp.</p>
 </div>
 <div class="shop">
+<article class="tag-card ml-card">
+<div class="tag-visual"><img src="midia/produtos/promo-fim-de-ano-quadrado.jpg" width="800" height="800" loading="lazy" alt="Promoção de fim de ano: rastreador 4G com bloqueio por R$ 89,90"></div>
+<div class="tag-info">
+<span class="cat">Promoção de fim de ano · até 31/12</span>
+<h3>Rastreador 4G com Bloqueio Lesankar</h3>
+<p>Veja seu veículo em tempo real no celular e bloqueie com um toque em caso de roubo ou furto. Vem com chip (Vivo, Claro e TIM), relé de bloqueio e manual. A instalação é feita por um autoelétrico.</p>
+<ul class="specs">
+<li><small>Rede</small><b>2G / 4G</b></li>
+<li><small>Bloqueio</small><b>pelo app</b></li>
+<li><small>Plano</small><b>R$ 39,90/mês</b></li>
+</ul>
+<p class="fine"><b>Instalação grátis em São Paulo capital.</b> Compra com a segurança do Mercado Livre e frete grátis. Para usar o app e o bloqueio, ative o plano Monitoramento + Bloqueio (R$ 39,90 por mês). Garantia de 90 dias.</p>
+<div class="tag-buy">
+<div class="price"><span class="per" style="text-decoration:line-through">de R$ 119,90</span><span class="cur" style="font-size:1.2rem">R$</span><span class="val">89,90</span><span class="per">aparelho + R$ 39,90/mês</span></div>
+<a class="btn btn-ml" href="https://produto.mercadolivre.com.br/MLB-5420145397-rastreador-veicular-com-bloqueio-pelo-app-carro-moto-gps-_JM" target="_blank" rel="noopener">Comprar no Mercado Livre</a>
+</div>
+</div>
+</article>
 <article class="tag-card">
 <div class="tag-visual" aria-hidden="true"><div class="waves"></div>
 <svg class="tag-svg" viewBox="0 0 320 300">
