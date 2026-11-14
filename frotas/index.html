@@ -79,6 +79,10 @@ footer{padding:28px 0;color:var(--muted);font-size:.85rem}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 .wa-float{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:var(--green);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4)}
 </style>
+<!-- Google Analytics (contador de visitas) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JGJWMNZZBX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JGJWMNZZBX');
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="mercadolivre.com.br"]');if(a){gtag('event','clique_mercado_livre',{link_url:a.href});}});</script>
 </head>
 <body>
 <header class="nav">
