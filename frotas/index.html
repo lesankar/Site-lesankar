@@ -82,7 +82,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 <!-- Google Analytics (contador de visitas) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JGJWMNZZBX"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JGJWMNZZBX');
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="mercadolivre.com.br"]');if(a){gtag('event','clique_mercado_livre',{link_url:a.href});}});</script>
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="mercadolivre.com.br"]');if(a){gtag('event','clique_mercado_livre',{link_url:a.href});}var w=e.target.closest&&e.target.closest('a[href*="wa.me"]');if(w){gtag('event','clique_whatsapp',{link_url:w.href});}});</script>
 </head>
 <body>
 <header class="nav">
